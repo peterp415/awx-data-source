@@ -1,0 +1,8 @@
+---
+all:
+  children:
+    group1:
+      children:
+        subgroup11:
+          hosts:
+            target1-g4e.c.dsp-sandbox2.internal.: {}
