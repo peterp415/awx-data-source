@@ -1,0 +1,39 @@
+- defaultTab: nodes
+  description: ''
+  executionEnabled: true
+  id: def8a43a-0517-4e44-b9ec-de12d5967672
+  loglevel: INFO
+  name: Inline_Playbook_Git
+  nodeFilterEditable: false
+  nodefilters:
+    dispatch:
+      excludePrecedence: true
+      keepgoing: false
+      rankOrder: ascending
+      successOnEmptyNodeFilter: false
+      threadcount: '5'
+    filter: 'tags: my-apptype'
+  nodesSelectedByDefault: true
+  plugins:
+    ExecutionLifecycle: null
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - configuration:
+        ansible-become: 'false'
+        ansible-playbook-inline: |
+          - name: test playbook
+            hosts: all
+            tasks:
+              - shell: uname -a
+                ignore_errors: yes
+                register: uname_result
+              - debug: msg="Inline Git says uname is {{ uname_result.stdout }}"
+        ansible-ssh-passphrase-option: option.password
+        ansible-ssh-use-agent: 'false'
+      nodeStep: true
+      type: com.batix.rundeck.plugins.AnsiblePlaybookInlineWorkflowNodeStep
+    keepgoing: false
+    strategy: parallel
+  uuid: def8a43a-0517-4e44-b9ec-de12d5967672
+
