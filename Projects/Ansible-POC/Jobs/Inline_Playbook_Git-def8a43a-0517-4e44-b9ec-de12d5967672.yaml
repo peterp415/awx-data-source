@@ -28,7 +28,7 @@
               - shell: uname -a
                 ignore_errors: yes
                 register: uname_result
-              - debug: msg="Inline Git says {{ uname_result.stdout }}"
+              - debug: msg="Inline Git says uname is {{ uname_result.stdout }}"
         ansible-ssh-passphrase-option: option.password
         ansible-ssh-use-agent: 'false'
       nodeStep: true
